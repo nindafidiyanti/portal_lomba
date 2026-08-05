@@ -1,23 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Input Lomba')
+@section('title', 'Edit Lomba')
 
 @push('styles')
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         :root {
-            --sidebar-w: 240px;
             --black: #0f0f0f;
-            --dark: #1a1a1a;
             --accent: #2979ff;
-            --accent2: #e8b800;
             --text-muted: #888;
             --bg: #f0f0f0;
             --card-bg: #ffffff;
@@ -27,156 +16,63 @@
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg);
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* ── SIDEBAR ── */
-        .sidebar {
-            width: var(--sidebar-w);
-            background: var(--black);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            border-right: 3px solid var(--accent);
-            z-index: 100;
-        }
-
-        .sidebar-profile {
-            padding: 28px 20px 24px;
-            border-bottom: 1px solid #2a2a2a;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #2a2a2a;
-            border: 2px solid var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            flex-shrink: 0;
-        }
-
-        .avatar svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .profile-info .name {
-            color: #fff;
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 1.2;
-        }
-
-        .profile-info .role {
-            color: var(--text-muted);
-            font-size: 12px;
-            margin-top: 2px;
-        }
-
-        .sidebar-nav {
-            flex: 1;
-            padding: 16px 0;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 13px 22px;
-            color: #888;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all .18s ease;
-            text-decoration: none;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-item svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .nav-item:hover {
-            color: #fff;
-            background: #1e1e1e;
-        }
-
-        .nav-item.active {
-            color: #fff;
-            background: #1e1e1e;
-            border-left-color: var(--accent);
-        }
-
-        .sidebar-footer {
-            padding: 16px 20px;
-            border-top: 1px solid #2a2a2a;
-        }
-
-        .btn-logout {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #666;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 10px 12px;
-            border-radius: 8px;
-            transition: all .18s;
-        }
-
-        .btn-logout svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .btn-logout:hover {
-            color: #ff4d4d;
-            background: rgba(255, 77, 77, .08);
-        }
-
-        /* ── MAIN ── */
-        .main {
-            margin-left: var(--sidebar-w);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
         /* ── TOPBAR ── */
         .topbar {
-            background: #fff;
-            height: 60px;
+            background: var(--card-bg);
+            height: 70px;
             display: flex;
             align-items: center;
-            padding: 0 28px;
-            gap: 16px;
-            border-bottom: 1px solid #e5e5e5;
+            justify-content: space-between;
+            padding: 0 32px;
+            border-bottom: 1px solid #e8e8e8;
             position: sticky;
             top: 0;
             z-index: 50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .topbar-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 22px;
-            letter-spacing: 1.5px;
+            font-size: 26px;
+            letter-spacing: 2px;
             color: var(--black);
-            flex: 1;
+        }
+
+        .topbar-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .topbar-breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .18s;
+        }
+
+        .topbar-breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        .topbar-breadcrumb span {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         .btn-back-top {
@@ -186,7 +82,7 @@
             background: transparent;
             border: 1.5px solid #ddd;
             border-radius: 8px;
-            padding: 6px 16px;
+            padding: 8px 18px;
             font-size: 12px;
             font-weight: 600;
             font-family: inherit;
@@ -203,39 +99,51 @@
         .btn-back-top:hover {
             border-color: var(--black);
             color: var(--black);
+            background: #fafafa;
         }
 
         /* ── PAGE CONTENT ── */
         .page-content {
-            flex: 1;
             padding: 40px 36px;
         }
 
-        /* ── FORM ── */
+        /* ── FORM CARD ── */
         .form-card {
             background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 40px 44px;
-            max-width: 720px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, .08);
+            border-radius: 16px;
+            padding: 44px 48px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            border: 1px solid #f0f0f0;
         }
 
         .form-header {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .form-header h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 32px;
-            letter-spacing: 1.5px;
+            font-size: 36px;
+            letter-spacing: 2px;
             color: var(--black);
             line-height: 1;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .form-header p {
             font-size: 13px;
             color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-header p svg {
+            width: 14px;
+            height: 14px;
         }
 
         .form-group {
@@ -279,7 +187,6 @@
             min-height: 100px;
         }
 
-        /* error state */
         .form-group input.is-error,
         .form-group select.is-error,
         .form-group textarea.is-error {
@@ -287,18 +194,6 @@
             background: #fff8f8;
         }
 
-        .error-msg {
-            font-size: 11px;
-            color: #e53535;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-msg.show {
-            display: block;
-        }
-
-        /* Laravel validation errors */
         .form-group .invalid-feedback {
             font-size: 11px;
             color: #e53535;
@@ -309,12 +204,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
-        }
-
-        @media(max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
         }
 
         .form-divider {
@@ -439,7 +328,6 @@
             color: #333;
         }
 
-        /* ── ALERT ── */
         .alert-error {
             background: #fff0f0;
             border: 1.5px solid #fcc;
@@ -458,16 +346,72 @@
         .alert-error li {
             margin-bottom: 2px;
         }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .topbar {
+                padding: 0 20px;
+                height: 60px;
+            }
+
+            .topbar-title {
+                font-size: 20px;
+            }
+
+            .topbar-breadcrumb {
+                display: none;
+            }
+
+            .page-content {
+                padding: 24px 20px;
+            }
+
+            .form-card {
+                padding: 28px 24px;
+                border-radius: 12px;
+            }
+
+            .form-header h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 @endpush
 
 @section('content')
-
+    <!-- ═══════════ TOPBAR ═══════════ -->
     <header class="topbar">
-        <div class="topbar-title">Edit Lomba</div>
-        <a href="{{ route('admin.dashboard') }}" class="btn-back-top">
-            ← Kembali
-        </a>
+        <div class="topbar-left">
+            <div class="topbar-title">EDIT LOMBA</div>
+            <div class="topbar-breadcrumb">
+                <a href="{{ route('admin.dashboard') }}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width:12px;height:12px">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                </a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="width:12px;height:12px;color:#ccc">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+                <span>Edit Lomba</span>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <a href="{{ route('admin.dashboard') }}" class="btn-back-top">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Kembali
+            </a>
+        </div>
     </header>
 
     <div class="page-content">
@@ -475,11 +419,19 @@
 
             <div class="form-header">
                 <h2>Edit Lomba</h2>
-                <p>Perbarui data lomba.</p>
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="16" x2="12" y2="12" />
+                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                    </svg>
+                    Perbarui data lomba di bawah.
+                </p>
             </div>
 
             @if($errors->any())
                 <div class="alert-error">
+                    <strong>Terdapat kesalahan:</strong>
                     <ul>
                         @foreach($errors->all() as $err)
                             <li>{{ $err }}</li>
@@ -492,126 +444,130 @@
                 @csrf
                 @method('PUT')
 
-                <!-- JUDUL -->
+                {{-- ── INFO DASAR ── --}}
+                <div class="form-section-label">Informasi Dasar</div>
+
                 <div class="form-group">
-                    <label>Nama Lomba</label>
-                    <input type="text" name="judul" value="{{ old('judul', $lomba->judul) }}">
+                    <label>Nama Lomba <span style="color:#e53535">*</span></label>
+                    <input type="text" name="judul" value="{{ old('judul', $lomba->judul) }}"
+                        placeholder="Contoh: Kapolres Cup I" class="{{ $errors->has('judul') ? 'is-error' : '' }}" />
+                    @error('judul')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
 
-                <!-- KATEGORI -->
-                <div class="form-group">
-                    <label>Kategori Peserta</label>
-                    <select name="kategori">
-                        <option value="">-- Pilih --</option>
-                        @foreach($settings['kategoriPeserta'] as $kat)
-                            <option value="{{ $kat }}" {{ old('kategori', $lomba->kategori) === $kat ? 'selected' : '' }}>{{ $kat }}</option>
-                        @endforeach
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kategori Peserta <span style="color:#e53535">*</span></label>
+                        <select name="kategori" class="{{ $errors->has('kategori') ? 'is-error' : '' }}">
+                            <option value="">-- Pilih --</option>
+                            @foreach($settings['kategoriPeserta'] as $kat)
+                                <option value="{{ $kat }}" {{ old('kategori', $lomba->kategori) === $kat ? 'selected' : '' }}>
+                                    {{ $kat }}</option>
+                            @endforeach
+                        </select>
+                        @error('kategori')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Cabang Olahraga <span style="color:#e53535">*</span></label>
+                        <select name="cabor" class="{{ $errors->has('cabor') ? 'is-error' : '' }}">
+                            <option value="">-- Pilih --</option>
+                            @foreach($settings['cabangOlahraga'] as $cabor)
+                                <option value="{{ $cabor }}" {{ old('cabor', $lomba->cabor) === $cabor ? 'selected' : '' }}>
+                                    {{ $cabor }}</option>
+                            @endforeach
+                        </select>
+                        @error('cabor')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
                 </div>
 
-                <!-- CABOR -->
+                <div class="form-divider"></div>
+
+                {{-- ── WAKTU & TEMPAT ── --}}
+                <div class="form-section-label">Waktu &amp; Tempat</div>
+
                 <div class="form-group">
-                    <label>Cabang Olahraga</label>
-                    <select name="cabor">
-                        <option value="">-- Pilih --</option>
-                        @foreach($settings['cabangOlahraga'] as $cabor)
-                            <option value="{{ $cabor }}" {{ old('cabor', $lomba->cabor) === $cabor ? 'selected' : '' }}>{{ $cabor }}</option>
-                        @endforeach
-                    </select>
+                    <label>Lokasi <span style="color:#e53535">*</span></label>
+                    <input type="text" name="lokasi" value="{{ old('lokasi', $lomba->lokasi) }}"
+                        placeholder="Contoh: Gor Bima Cirebon" class="{{ $errors->has('lokasi') ? 'is-error' : '' }}" />
+                    @error('lokasi')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
 
-                <!-- LOKASI -->
                 <div class="form-group">
-                    <label>Lokasi</label>
-                    <input type="text" name="lokasi" value="{{ old('lokasi', $lomba->lokasi) }}">
+                    <label>Tingkat Wilayah <span style="color:#e53535">*</span></label>
+                    <input type="text" name="tingkat_wilayah" value="{{ old('tingkat_wilayah', $lomba->tingkat_wilayah) }}"
+                        placeholder="Contoh: Jawa Barat" class="{{ $errors->has('tingkat_wilayah') ? 'is-error' : '' }}" />
+                    @error('tingkat_wilayah')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
 
-                <!-- TINGKAT -->
-                <div class="form-group">
-                    <label>Tingkat Wilayah</label>
-                    <input type="text" name="tingkat_wilayah" value="{{ old('tingkat_wilayah', $lomba->tingkat_wilayah) }}">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tanggal Mulai <span style="color:#e53535">*</span></label>
+                        <input type="date" name="tanggal_mulai"
+                            value="{{ old('tanggal_mulai', $lomba->tanggal_mulai ? \Carbon\Carbon::parse($lomba->tanggal_mulai)->format('Y-m-d') : '') }}"
+                            class="{{ $errors->has('tanggal_mulai') ? 'is-error' : '' }}" />
+                        @error('tanggal_mulai')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Selesai <span style="color:#e53535">*</span></label>
+                        <input type="date" name="tanggal_selesai"
+                            value="{{ old('tanggal_selesai', $lomba->tanggal_selesai ? \Carbon\Carbon::parse($lomba->tanggal_selesai)->format('Y-m-d') : '') }}"
+                            class="{{ $errors->has('tanggal_selesai') ? 'is-error' : '' }}" />
+                        @error('tanggal_selesai')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
                 </div>
 
-                <!-- TANGGAL MULAI -->
-                <div class="form-group">
-                    <label>Tanggal Mulai</label>
-                    <input type="date" name="tanggal_mulai"
-                        value="{{ old('tanggal_mulai', $lomba->tanggal_mulai ? \Carbon\Carbon::parse($lomba->tanggal_mulai)->format('Y-m-d') : '') }}">
-                </div>
+                <div class="form-divider"></div>
 
-                <!-- TANGGAL SELESAI -->
-                <div class="form-group">
-                    <label>Tanggal Selesai</label>
-                    <input type="date" name="tanggal_selesai"
-                        value="{{ old('tanggal_selesai', $lomba->tanggal_selesai ? \Carbon\Carbon::parse($lomba->tanggal_selesai)->format('Y-m-d') : '') }}">
-                </div>
+                {{-- ── DETAIL TAMBAHAN ── --}}
+                <div class="form-section-label">Detail Tambahan</div>
 
-                <!-- PENYELENGGARA -->
                 <div class="form-group">
                     <label>Penyelenggara</label>
-                    <input type="text" name="penyelenggara" value="{{ old('penyelenggara', $lomba->penyelenggara) }}">
+                    <input type="text" name="penyelenggara" value="{{ old('penyelenggara', $lomba->penyelenggara) }}"
+                        placeholder="Contoh: Polres Cirebon" />
                 </div>
 
-                {{-- Link + Deadline PESERTA --}}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Link Pendaftaran Peserta</label>
-                        <input type="url" name="link" value="{{ old('link', $lomba->link) }}" placeholder="https://..." />
-                    </div>
-                    <div class="form-group">
-                        <label>Deadline Pendaftaran Peserta</label>
-                        <input type="date" name="deadline_pendaftaran"
-                            value="{{ old('deadline_pendaftaran', $lomba->deadline_pendaftaran) }}"
-                            class="{{ $errors->has('deadline_pendaftaran') ? 'is-error' : '' }}" />
-                        @error('deadline_peserta')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
+                <div class="form-group">
+                    <label>Link Pendaftaran Peserta</label>
+                    <input type="url" name="link" value="{{ old('link', $lomba->link) }}" placeholder="https://..." />
                 </div>
 
-                {{-- Link + Deadline PANITIA --}}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Link Pendaftaran Panitia</label>
-                        <input type="url" name="link_pendaftaran_panitia"
-                            value="{{ old('link_pendaftaran_panitia', $lomba->link_pendaftaran_panitia) }}"
-                            placeholder="https://..." />
-                    </div>
-                    <div class="form-group">
-                        <label>Deadline Pendaftaran Panitia</label>
-                        <input type="date" name="deadline_panitia"
-                            value="{{ old('deadline_panitia', $lomba->deadline_panitia) }}"
-                            class="{{ $errors->has('deadline_panitia') ? 'is-error' : '' }}" />
-                        @error('deadline_panitia')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-                </div>
-
-                <!-- DESKRIPSI -->
                 <div class="form-group">
                     <label>Deskripsi</label>
-                    <textarea name="deskripsi">{{ old('deskripsi', $lomba->deskripsi) }}</textarea>
+                    <textarea name="deskripsi"
+                        placeholder="Informasi tambahan mengenai lomba...">{{ old('deskripsi', $lomba->deskripsi) }}</textarea>
                 </div>
 
-                <!-- POSTER -->
                 <div class="form-group">
-                    <label>Poster</label>
+                    <label>Poster / Gambar</label>
+                    <div class="upload-area" onclick="document.getElementById('poster-input').click()">
+                        <input type="file" id="poster-input" name="poster" accept="image/*" onchange="previewPoster(this)"
+                            onclick="event.stopPropagation()">
 
-                    @if($lomba->poster)
-                        <div style="margin-bottom:10px;">
-                            <img src="{{ asset('storage/' . $lomba->poster) }}" width="120">
+                        <div class="upload-icon">🖼️</div>
+                        <div class="upload-text">Klik untuk upload poster</div>
+                        <div class="upload-hint">PNG, JPG, WEBP — maks. 2MB</div>
+
+                        @if($lomba->poster)
+                            <div class="upload-preview" style="display:block;">
+                                <img src="{{ asset('storage/' . $lomba->poster) }}" alt="poster lama" />
+                            </div>
+                        @endif
+
+                        <div class="upload-preview" id="poster-preview" style="display:none;">
+                            <img id="poster-preview-img" src="" alt="preview" />
                         </div>
-                    @endif
-
-                    <input type="file" name="poster">
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-submit">
-                    Update Lomba
-                </button>
+                {{-- ── ACTIONS ── --}}
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Update Lomba</button>
+                    <a href="{{ route('admin.dashboard') }}" class="btn-cancel">Batal</a>
+                </div>
 
             </form>
-
         </div>
     </div>
-
 @endsection
 
 @push('scripts')
@@ -620,8 +576,10 @@
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = e => {
-                    document.getElementById('poster-preview-img').src = e.target.result;
-                    document.getElementById('poster-preview').style.display = 'block';
+                    const preview = document.getElementById('poster-preview');
+                    const img = document.getElementById('poster-preview-img');
+                    img.src = e.target.result;
+                    preview.style.display = 'block';
                 };
                 reader.readAsDataURL(input.files[0]);
             }

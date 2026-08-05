@@ -566,7 +566,7 @@
                     @endforeach
                 </div>
 
-                <div style="margin-top:12px;">
+                <div style="margin-top:12px; margin-bottom:24px;">
                     <button type="button" id="btn-tambah-jadwal" class="btn-tambah"
                         style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
                         <span style="font-size:18px;line-height:1;">+</span> Tambah Jadwal

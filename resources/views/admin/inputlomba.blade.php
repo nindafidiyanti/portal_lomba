@@ -5,11 +5,8 @@
 @push('styles')
     <style>
         :root {
-            --sidebar-w: 240px;
             --black: #0f0f0f;
-            --dark: #1a1a1a;
             --accent: #2979ff;
-            --accent2: #e8b800;
             --text-muted: #888;
             --bg: #f0f0f0;
             --card-bg: #ffffff;
@@ -76,85 +73,6 @@
             display: flex;
             align-items: center;
             gap: 16px;
-        }
-
-        .topbar-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            border: none;
-            background: transparent;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all .18s;
-            position: relative;
-        }
-
-        .topbar-btn:hover {
-            background: #f0f0f0;
-            color: var(--black);
-        }
-
-        .topbar-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .topbar-btn .badge {
-            position: absolute;
-            top: 6px;
-            right: 6px;
-            width: 8px;
-            height: 8px;
-            background: #e53535;
-            border-radius: 50%;
-        }
-
-        .topbar-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 12px 6px 6px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background .18s;
-        }
-
-        .topbar-user:hover {
-            background: #f0f0f0;
-        }
-
-        .topbar-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .topbar-user-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .topbar-user-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--black);
-            line-height: 1.2;
-        }
-
-        .topbar-user-role {
-            font-size: 11px;
-            color: var(--text-muted);
         }
 
         .btn-back-top {
@@ -269,7 +187,6 @@
             min-height: 100px;
         }
 
-        /* error state */
         .form-group input.is-error,
         .form-group select.is-error,
         .form-group textarea.is-error {
@@ -277,18 +194,6 @@
             background: #fff8f8;
         }
 
-        .error-msg {
-            font-size: 11px;
-            color: #e53535;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-msg.show {
-            display: block;
-        }
-
-        /* Laravel validation errors */
         .form-group .invalid-feedback {
             font-size: 11px;
             color: #e53535;
@@ -423,7 +328,6 @@
             color: #333;
         }
 
-        /* ── ALERT ── */
         .alert-error {
             background: #fff0f0;
             border: 1.5px solid #fcc;
@@ -487,13 +391,15 @@
             <div class="topbar-title">INPUT LOMBA</div>
             <div class="topbar-breadcrumb">
                 <a href="{{ route('admin.dashboard') }}">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width:12px;height:12px">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </a>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;color:#ccc">
-                    <polyline points="9 18 15 12 9 6"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="width:12px;height:12px;color:#ccc">
+                    <polyline points="9 18 15 12 9 6" />
                 </svg>
                 <span>Input Lomba</span>
             </div>
@@ -501,7 +407,7 @@
         <div class="topbar-right">
             <a href="{{ route('admin.dashboard') }}" class="btn-back-top">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
                 Kembali
             </a>
@@ -515,15 +421,14 @@
                 <h2>Tambah Lomba Baru</h2>
                 <p>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="12" y1="16" x2="12" y2="12"/>
-                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="16" x2="12" y2="12" />
+                        <line x1="12" y1="8" x2="12.01" y2="8" />
                     </svg>
                     Isi semua field di bawah untuk menambahkan lomba ke daftar publik.
                 </p>
             </div>
 
-            {{-- Validation errors --}}
             @if($errors->any())
                 <div class="alert-error">
                     <strong>Terdapat kesalahan:</strong>
@@ -554,8 +459,7 @@
                         <select name="kategori" class="{{ $errors->has('kategori') ? 'is-error' : '' }}">
                             <option value="">-- Pilih --</option>
                             @foreach($settings['kategoriPeserta'] as $kat)
-                                <option value="{{ $kat }}" {{ old('kategori') === $kat ? 'selected' : '' }}>{{ $kat }}
-                                </option>
+                                <option value="{{ $kat }}" {{ old('kategori') === $kat ? 'selected' : '' }}>{{ $kat }}</option>
                             @endforeach
                         </select>
                         @error('kategori')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -565,8 +469,7 @@
                         <select name="cabor" class="{{ $errors->has('cabor') ? 'is-error' : '' }}">
                             <option value="">-- Pilih --</option>
                             @foreach($settings['cabangOlahraga'] as $cabor)
-                                <option value="{{ $cabor }}" {{ old('cabor') === $cabor ? 'selected' : '' }}>{{ $cabor }}
-                                </option>
+                                <option value="{{ $cabor }}" {{ old('cabor') === $cabor ? 'selected' : '' }}>{{ $cabor }}</option>
                             @endforeach
                         </select>
                         @error('cabor')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -586,7 +489,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Tingkat Wilayah<span style="color:#e53535">*</span></label>
+                    <label>Tingkat Wilayah <span style="color:#e53535">*</span></label>
                     <input type="text" name="tingkat_wilayah" value="{{ old('tingkat_wilayah') }}"
                         placeholder="Contoh: Jawa Barat" class="{{ $errors->has('tingkat_wilayah') ? 'is-error' : '' }}" />
                     @error('tingkat_wilayah')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -618,32 +521,9 @@
                         placeholder="Contoh: Polres Cirebon" />
                 </div>
 
-                {{-- Link + Deadline PESERTA --}}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Link Pendaftaran Peserta</label>
-                        <input type="url" name="link" value="{{ old('link') }}" placeholder="https://..." />
-                    </div>
-                    <div class="form-group">
-                        <label>Deadline Pendaftaran Peserta</label>
-                        <input type="date" name="deadline_pendaftaran" value="{{ old('deadline_pendaftaran') }}"
-                            class="{{ $errors->has('deadline_pendaftaran') ? 'is-error' : '' }}" />
-                        @error('deadline_peserta')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-                </div>
-
-                {{-- Link + Deadline PANITIA --}}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Link Pendaftaran Panitia</label>
-                        <input type="url" name="link_pendaftaran_panitia" value="{{ old('link_pendaftaran_panitia') }}" placeholder="https://..." />
-                    </div>
-                    <div class="form-group">
-                        <label>Deadline Pendaftaran Panitia</label>
-                        <input type="date" name="deadline_panitia" value="{{ old('deadline_panitia') }}"
-                            class="{{ $errors->has('deadline_panitia') ? 'is-error' : '' }}" />
-                        @error('deadline_panitia')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
+                <div class="form-group">
+                    <label>Link Pendaftaran Peserta</label>
+                    <input type="url" name="link" value="{{ old('link') }}" placeholder="https://..." />
                 </div>
 
                 <div class="form-group">
@@ -655,7 +535,8 @@
                 <div class="form-group">
                     <label>Poster / Gambar</label>
                     <div class="upload-area" onclick="document.getElementById('poster-input').click()">
-                        <input type="file" id="poster-input" name="poster" accept="image/*" onchange="previewPoster(this)" onclick="event.stopPropagation()">
+                        <input type="file" id="poster-input" name="poster" accept="image/*" onchange="previewPoster(this)"
+                            onclick="event.stopPropagation()">
                         <div class="upload-icon">🖼️</div>
                         <div class="upload-text">Klik untuk upload poster</div>
                         <div class="upload-hint">PNG, JPG, WEBP — maks. 2MB</div>

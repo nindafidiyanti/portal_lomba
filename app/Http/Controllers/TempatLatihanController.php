@@ -74,6 +74,7 @@ class TempatLatihanController extends Controller
             'no_telepon' => 'nullable|string|max:20',
             'foto_tempat' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'status' => 'in:aktif,nonaktif',
+            'store' => 'in:aktif,nonaktif',
         ]);
 
         $data = $request->all();
@@ -83,7 +84,7 @@ class TempatLatihanController extends Controller
         $jadwal = array_filter($jadwal, function ($item) {
             return !empty($item['hari']);
         });
-        $data['jadwal'] = array_values($jadwal); // re-index
+        $validated['jadwal'] = array_values($jadwal);
 
         if ($request->hasFile('foto_tempat')) {
             $validated['foto_tempat'] = $request->file('foto_tempat')
@@ -130,7 +131,7 @@ class TempatLatihanController extends Controller
         $jadwal = array_filter($jadwal, function ($item) {
             return !empty($item['hari']);
         });
-        $data['jadwal'] = array_values($jadwal);
+        $validated['jadwal'] = array_values($jadwal);
 
         if ($request->hasFile('foto_tempat')) {
             // Hapus foto lama jika ada

@@ -521,10 +521,6 @@
                         </a>
                         @auth
                             @if($forum->user_id === Auth::id())
-                                <a href="{{ route('forum.edit', $forum->id) }}" class="post-react"
-                                    style="margin-left:auto;text-decoration:none;color:#aaa;">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
                                 <form action="{{ route('forum.destroy', $forum->id) }}" method="POST"
                                     onsubmit="return confirm('Hapus postingan ini?')" style="display:inline;">
                                     @csrf @method('DELETE')

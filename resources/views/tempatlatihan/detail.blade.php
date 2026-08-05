@@ -373,8 +373,16 @@
             z-index: 4;
             text-transform: uppercase;
         }
-        .poster-tag.aktif    { background: #22c55e; color: #fff; }
-        .poster-tag.nonaktif { background: #888;    color: #fff; }
+
+        .poster-tag.aktif {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .poster-tag.nonaktif {
+            background: #888;
+            color: #fff;
+        }
 
         @media (max-width: 600px) {
             .poster-tag {
@@ -749,7 +757,8 @@
             {{-- ── FOTO / POSTER ── --}}
             <div class="poster-col">
                 @if($latihan->foto_tempat)
-                    <img class="poster-img" src="{{ Storage::url($latihan->foto_tempat) }}" alt="{{ $latihan->nama_tempat }}">
+                    <img class="poster-img" src="{{ Storage::url($latihan->foto_tempat) }}"
+                        alt="{{ $latihan->nama_tempat }}">
                     <div class="poster-overlay"></div>
                 @else
                     <div class="poster-fallback">
@@ -804,20 +813,44 @@
                         </div>
                     </div>
                     @if($latihan->no_telepon)
-                    <div class="meta-item">
-                        <div class="meta-icon"><i class="bi bi-telephone-fill"></i></div>
-                        <div>
-                            <div class="meta-label">No. Telepon / WhatsApp</div>
-                            <div class="meta-value">{{ $latihan->no_telepon }}</div>
+                        <div class="meta-item">
+                            <div class="meta-icon"><i class="bi bi-telephone-fill"></i></div>
+                            <div>
+                                <div class="meta-label">No. Telepon / WhatsApp</div>
+                                <div class="meta-value">{{ $latihan->no_telepon }}</div>
+                            </div>
                         </div>
-                    </div>
                     @endif
-                </div>
 
+            </div>
+
+            {{-- Jadwal Latihan --}}
+            @if(!empty($latihan->jadwal) && count($latihan->jadwal))
                 <div class="divider"></div>
 
-                {{-- Deskripsi --}}
-                @if($latihan->deskripsi)
+                <div class="link-box">
+                    <i class="bi bi-calendar-week-fill"></i>
+
+                    <div class="link-box-inner">
+                        <div class="link-box-label">Jadwal Latihan</div>
+
+                        @foreach($latihan->jadwal as $jadwal)
+                            @if(!empty($jadwal['hari']))
+                                <div class="meta-value" style="margin-bottom:8px;">
+                                    <strong>{{ $jadwal['hari'] }}</strong><br>
+                                    {{ $jadwal['jam_mulai'] }} - {{ $jadwal['jam_selesai'] }}
+                                </div>
+                            @endif
+                        @endforeach
+
+                    </div>
+                </div>
+            @endif
+
+            <div class="divider"></div>
+
+            {{-- Deskripsi --}}
+            @if($latihan->deskripsi)
                 <div class="link-box">
                     <i class="bi bi-file-text-fill"></i>
                     <div class="link-box-inner">
@@ -828,10 +861,10 @@
                     </div>
                 </div>
                 <div class="divider"></div>
-                @endif
+            @endif
 
-                {{-- Link Google Maps --}}
-                @if($latihan->link_maps)
+            {{-- Link Google Maps --}}
+            @if($latihan->link_maps)
                 <div class="link-box">
                     <i class="bi bi-map-fill"></i>
                     <div class="link-box-inner">
@@ -845,37 +878,36 @@
                     </a>
                 </div>
                 <div class="divider"></div>
-                @endif
+            @endif
 
-                {{-- Contact Person / Pelatih --}}
-                <div class="organizer-box">
-                    <div class="org-avatar">
-                        <i class="bi bi-person-fill"></i>
-                    </div>
-                    <div>
-                        <div class="org-label">Contact Person Pelatih</div>
-                        <div class="org-name">{{ $latihan->nama_pelatih }}</div>
-                        @if($latihan->no_telepon)
+            {{-- Contact Person / Pelatih --}}
+            <div class="organizer-box">
+                <div class="org-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <div>
+                    <div class="org-label">Contact Person Pelatih</div>
+                    <div class="org-name">{{ $latihan->nama_pelatih }}</div>
+                    @if($latihan->no_telepon)
                         <div style="margin-top:4px;">
-                            <a href="https://wa.me/{{ preg_replace('/\D/', '', $latihan->no_telepon) }}"
-                               target="_blank"
-                               style="color:var(--accent);font-size:12px;font-weight:600;text-decoration:none;">
+                            <a href="https://wa.me/{{ preg_replace('/\D/', '', $latihan->no_telepon) }}" target="_blank"
+                                style="color:var(--accent);font-size:12px;font-weight:600;text-decoration:none;">
                                 <i class="bi bi-whatsapp"></i> {{ $latihan->no_telepon }}
                             </a>
                         </div>
-                        @endif
-                    </div>
+                    @endif
                 </div>
-
             </div>
-        </div>
 
-        {{-- Back button --}}
-        <div class="back-section">
-            <a href="{{ route('landing') }}" class="btn-back-main">
-                <i class="bi bi-arrow-left"></i> Lihat Tempat Latihan Lainnya
-            </a>
         </div>
+    </div>
+
+    {{-- Back button --}}
+    <div class="back-section">
+        <a href="{{ route('landing') }}" class="btn-back-main">
+            <i class="bi bi-arrow-left"></i> Lihat Tempat Latihan Lainnya
+        </a>
+    </div>
     </div>
 
     {{-- ══ FOOTER ══ --}}

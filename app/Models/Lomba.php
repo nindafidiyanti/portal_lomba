@@ -22,9 +22,6 @@ class Lomba extends Model
         'biaya_pendaftaran',
         'poster',
         'link',
-        'deadline_pendaftaran',
-        'deadline_panitia',
-        'link_pendaftaran_panitia',
         'status',
     ];
 

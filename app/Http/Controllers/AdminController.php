@@ -44,9 +44,6 @@ class AdminController extends Controller
             'link' => 'nullable|url|max:500',
             'deskripsi' => 'required|string',
             'poster' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'deadline_pendaftaran' => 'nullable|date',
-            'deadline_panitia' => 'nullable|date',
-            'link_pendaftaran_panitia' => 'nullable|url',
         ], [
             'judul.required' => 'Judul lomba wajib diisi.',
             'kategori.required' => 'Kategori peserta wajib dipilih.',
@@ -81,9 +78,6 @@ class AdminController extends Controller
             'link' => $request->link,
             'deskripsi' => $request->deskripsi,
             'poster' => $posterPath,
-            'deadline_pendaftaran' => $request->deadline_pendaftaran,
-            'deadline_panitia' => $request->deadline_panitia,
-            'link_pendaftaran_panitia' => $request->link_pendaftaran_panitia,
         ]);
 
         return redirect()
@@ -121,9 +115,6 @@ class AdminController extends Controller
             'link' => 'nullable|url|max:500',
             'deskripsi' => 'required|string',
             'poster' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'deadline_pendaftaran' => 'nullable|date',
-            'deadline_panitia' => 'nullable|date',
-            'link_pendaftaran_panitia' => 'nullable|url',
         ], [
             'judul.required' => 'Judul lomba wajib diisi.',
             'kategori.required' => 'Kategori peserta wajib dipilih.',
@@ -161,9 +152,6 @@ class AdminController extends Controller
             'link' => $request->link,
             'deskripsi' => $request->deskripsi,
             'poster' => $posterPath,
-            'deadline_pendaftaran' => $request->deadline_pendaftaran,
-            'deadline_panitia' => $request->deadline_panitia,
-            'link_pendaftaran_panitia' => $request->link_pendaftaran_panitia,
         ]);
 
         return redirect()
