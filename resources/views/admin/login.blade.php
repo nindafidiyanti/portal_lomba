@@ -242,7 +242,7 @@
             box-shadow: 0 0 0 3px rgba(41, 121, 255, .12);
         }
 
-        .form-input:focus + .input-icon,
+        .form-input:focus+.input-icon,
         .input-wrap:has(.form-input:focus) .input-icon {
             color: var(--accent);
         }
@@ -279,7 +279,7 @@
             transition: all .2s;
         }
 
-        .checkbox-wrap input:checked + .checkmark {
+        .checkbox-wrap input:checked+.checkmark {
             background: var(--accent);
             border-color: var(--accent);
         }
@@ -291,7 +291,7 @@
             transition: opacity .15s;
         }
 
-        .checkbox-wrap input:checked + .checkmark i {
+        .checkbox-wrap input:checked+.checkmark i {
             opacity: 1;
         }
 
@@ -463,6 +463,11 @@
                         </span>
                         <span>Ingat saya</span>
                     </label>
+                    <a href="{{ route('password.request') }}?from=admin"
+                        style="color:#888;font-size:13px;text-decoration:none;transition:color .2s;"
+                        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">
+                        Lupa password?
+                    </a>
                 </div>
 
                 {{-- Button --}}

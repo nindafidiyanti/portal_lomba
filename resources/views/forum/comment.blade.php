@@ -653,11 +653,6 @@
                                 Balas
                             </button>
 
-                            <button class="comment-action share">
-                                <i class="bi bi-share"></i>
-                                Bagikan
-                            </button>
-
                             {{-- Delete untuk pemilik komentar atau admin --}}
                             @auth
                                 @if($comment->user_id === Auth::id() || session('is_admin'))

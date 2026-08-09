@@ -156,13 +156,13 @@ class ForumController extends Controller
     {
         $forum = Forum::findOrFail($id);
 
-        if ($forum->user_id != Auth::id())
+        if ($forum->user_id != Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
-
+        }
         ForumComment::where('forum_id', $forum->id)->delete();
         $forum->delete();
 
-        return redirect()->route('forum.index')
+        return redirect()->route(Auth::user()->role === 'admin' ? 'admin.forum.index' : 'forum.index')
             ->with('toast_success', 'Postingan berhasil dihapus.');
     }
 

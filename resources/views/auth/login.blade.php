@@ -642,7 +642,7 @@
                         </span>
                         <span>Ingat saya</span>
                     </label>
-                    <a href="{{ route('password.request') }}"
+                    <a href="{{ route('password.request') }}?from=user"
                         style="color:#888;font-size:13px;text-decoration:none;transition:color .2s;"
                         onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#888'">
                         Lupa password?

@@ -163,7 +163,7 @@ class TempatLatihanController extends Controller
 
         $latihan->delete();
 
-        return redirect()->route('admin.tempatlatihan.dashboard')
+        return redirect()->route('admin.tempatlatihan.index')
             ->with('toast_success', 'Tempat latihan berhasil dihapus!');
     }
 
